@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import offSound from'./sound/offSound.mp3';
+import offSound from './sound/offSound.mp3';
 import onSound from './sound/onSound.mp3';
 import bank1Sound from './sound/bank1Sound.mp3';
 import bank2Sound from './sound/bank2Sound.mp3';
@@ -10,19 +10,31 @@ const Body = styled.div`
   margin: 0;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #1f1c2c, #928dab);
+  min-height: 100vh;
 `;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   min-height: 100vh;
+  padding: 20px;
 `;
 
 const PadContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 5px;
+  }
 `;
 
 const DrumPad = styled.div`
@@ -39,15 +51,27 @@ const DrumPad = styled.div`
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  
+
   &:hover {
-    background-color: #ffcc00; /* Hover color */
+    background-color: #ffcc00;
     color: #333;
   }
 
   &:active {
     box-shadow: 0 2px #666;
     transform: translateY(2px);
+  }
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
   }
 `;
 
@@ -56,11 +80,20 @@ const Controls = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background-color: gradient(145deg, rgba(0,5,5,0.2));
+  background-color: rgba(0, 5, 5, 0.2);
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 4, 0, 0.5);
-  margin-left: 100px;
-  border-shadow: 0 2px rgba(255, 245, 0, 0.4);
+  margin-left: 50px;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin-left: 10px;
+    padding: 15px;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -68,6 +101,10 @@ const Paragraph = styled.p`
   font-size: 18px;
   margin: 0;
   text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const Checkbox = styled.input.attrs({ type: 'checkbox' })`
@@ -135,30 +172,6 @@ const RangeInput = styled.input.attrs({ type: 'range' })`
     box-shadow: 0 0 10px #000;
   }
 `;
-
-// const Button = styled.button`
-//   background-color: #a9a9a9;
-//   color: #000;
-//   font-size: 18px;
-//   text-transform: uppercase;
-//   padding: 10px 20px;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-//   box-shadow: 0 4px #666;
-//   font-weight: bold;
-//   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  
-//   &:hover {
-//     background-color: #ffcc00;
-//     color: #333;
-//   }
-
-//   &:active {
-//     box-shadow: none;
-//     transform: translateY(4px);
-//   }
-// `;
 
 const drumPads = [
   { key: 'Q', id: 'Heater-1', src: '/asset/Heater-1.mp3' },
